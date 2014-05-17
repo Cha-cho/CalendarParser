@@ -16,7 +16,32 @@
  int i = std::stoi(s);
  */
 
-Event::Event() {
+Event::Event(fstream fout,
+	     string name,
+	     string descript,
+	     string locat,
+	     string calName,
+	     bool isAllDay,
+	     int nGuests,
+	     string UIDs,
+	     string dateStartString,
+	     string dateEndString,
+	     string dateStampString,
+	     string dateCreatedString,
+	     string dateModifiedString) :
+eventName(name),
+description(descript),
+location(locat),
+calendarName(calName),
+allDay(isAllDay),
+numGuests(nGuests),
+UID(UIDs),
+dateStartStr(dateStartString),
+dateEndStr(dateEndString),
+dateStampStr(dateStampString),
+dateCreatedStr(dateCreatedString),
+dateModifiedStr(dateModifiedString)
+{
     
 }
 
@@ -72,12 +97,19 @@ double Event::calculateDuration() {
     
 }
 
-string Event::dateToString(Date *date) {
-    
-}
-
 void Event::print() {
-    fout << calendarName << ',' << eventName << ',' << location << ',' << description << ',' << dateStartStr << ',' << dateEndStr << ',' << dateCreatedStr << ',' << dateModifiedStr << ',' << dateStampStr << ',' << eventDuration << endl;
+    fout <<
+    calendarName << ',' <<
+    eventName << ',' <<
+    location << ',' <<
+    description << ',' <<
+    dateStartStr << ',' <<
+    dateEndStr << ',' <<
+    dateCreatedStr << ',' <<
+    dateModifiedStr << ',' <<
+    dateStampStr << ',' <<
+    eventDuration <<
+    endl;
     
     
 }

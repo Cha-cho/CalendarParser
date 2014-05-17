@@ -27,6 +27,8 @@ private:
     int minute;
     string dayString;
     
+    string dateString;
+    
     
 public:
     Date(string dateString);		// parses out the formatted string
@@ -38,6 +40,8 @@ public:
     string getHour();
     string getMinute();
     string getDayString();
+    
+    void toString();
     
 };
 

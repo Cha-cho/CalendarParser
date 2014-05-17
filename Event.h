@@ -13,6 +13,7 @@
 #define __CalendarParser__Event__
 
 #include <iostream>
+#include <fstream>
 #include "Date.h"
 #include "String.h"
 #include "common.h"
@@ -27,7 +28,6 @@ private:
     Date *dateStamp;
     Date *dateCreated;
     Date *dateModified;
-    
     string dateStartStr;
     string dateEndStr;
     string dateStampStr;
@@ -41,11 +41,24 @@ private:
     bool allDay;
     int numGuests;
     string UID;
+    fstream fout;
     
     double eventDuration;
     
 public:
-    Event();
+    Event(fstream fout,
+	  string name,
+	  string descript,
+	  string locat,
+	  string calName,
+	  bool isAllDay,
+	  int nGuests,
+	  string UIDs,
+	  string dateStartString,
+	  string dateEndString,
+	  string dateStampString,
+	  string dateCreatedString,
+	  string dateModifiedString);
     ~Event();
     string getYear(Date *date);
     string getMonth(Date *date);
