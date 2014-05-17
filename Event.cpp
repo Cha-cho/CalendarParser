@@ -16,4 +16,71 @@
  int i = std::stoi(s);
  */
 
+Event::Event() {
+    
+}
+
+Event::~Event() {
+    
+}
+
+string Event::getYear(Date *date) {
+    
+}
+
+string Event::getMonth(Date *date) {
+    
+}
+
+string Event::getDay(Date *date) {
+    
+}
+
+string Event::getDayOfWeek(Date *date) {
+    
+}
+
+string Event::getDayString(Date *date) {
+    
+}
+
+string Event::getLocation() {
+    
+}
+
+string Event::getEventName() {
+    
+}
+
+string Event::getCalendarName() {
+    
+}
+
+bool Event::isAllDay() {
+    
+}
+
+string Event::getUID() {
+    
+}
+
+string Event::getDescription() {
+    
+}
+
+double Event::calculateDuration() {
+    
+}
+
+string Event::dateToString(Date *date) {
+    
+}
+
+void Event::print() {
+    fout << calendarName << ',' << eventName << ',' << location << ',' << description << ',' << dateStartStr << ',' << dateEndStr << ',' << dateCreatedStr << ',' << dateModifiedStr << ',' << dateStampStr << ',' << eventDuration << endl;
+    
+    
+}
+
+
 

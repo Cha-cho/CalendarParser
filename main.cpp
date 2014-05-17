@@ -10,45 +10,38 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <typeinfo>
 #include "common.h"
-#include "Print.h"
 #include "Scanner.h"
 #include "Date.h"
 #include "Event.h"
 
 FILE *init_lister(const char *name, char source_file_name[], char dte[]);
-void quit_scanner(FILE *src_file, Token *list);
+void quit_scanner(FILE *src_file, Event *list);
 
 int main(int argc, const char * argv[])
 {
-    Token *token = NULL;
-    char source_name[MAX_FILE_NAME_LENGTH];
-    char date[DATE_STRING_LENGTH];
-    FILE *source_file = init_lister(argv[1], source_name, date);
-    Print print(source_name, date);
+    Event *event = NULL;
+    ifstream fin;
+    ofstream fout;
+    
+    fin.open('input.txt');		// use shell script 'cat' to combine all the ICS files into one text file
+    fout.open('output.csv');		// allows reading by MATLAB
+    
+    
     Scanner scanner(source_file, source_name, date, print);
-    IdentifierBinaryTree tree;
     
     do
 	{
-	number_type = false;
-	token = scanner.getToken();
-        print.printToken(token);
-        if (token->getCode() == IDENTIFIER)
-	    {
-	    tree.addIdentifier((Identifier*) token, scanner.getLineNumber());
-	    }
-        else if (token->getCode() != PERIOD && token->getCode() != END_OF_FILE)
-	    {
-	    delete token;
-	    }
-	}
-    while (token->getCode() != PERIOD && token->getCode() != END_OF_FILE);
+	event = scanner.getEvent();
+        event.print(fout);
+	} while (event->getEvent() != END_OF_FILE);		// actually have "END:VCALENDAR"
     
-    print.printTree(tree.getTreeRoot());
     delete token;
-    fclose(source_file);
+    fin.close();
+    fout.close();
+    
     return 0;
 }
 FILE *init_lister(const char *name, char source_file_name[], char dte[])
@@ -61,4 +54,5 @@ FILE *init_lister(const char *name, char source_file_name[], char dte[])
     strcpy(dte, asctime(localtime(&timer)));
     return file;
 }
+
 

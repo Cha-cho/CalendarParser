@@ -28,6 +28,12 @@ private:
     Date *dateCreated;
     Date *dateModified;
     
+    string dateStartStr;
+    string dateEndStr;
+    string dateStampStr;
+    string dateCreatedStr;
+    string dateModifiedStr;
+    
     string eventName;
     string description;
     string location;
@@ -54,7 +60,7 @@ public:
     string getDescription();
     
     double calculateDuration();
-    
+    void print();
 };
 
 #endif /* defined(__CalendarParser__Event__) */
