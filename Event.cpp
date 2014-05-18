@@ -49,54 +49,6 @@ Event::~Event() {
     
 }
 
-string Event::getYear(Date *date) {
-    
-}
-
-string Event::getMonth(Date *date) {
-    
-}
-
-string Event::getDay(Date *date) {
-    
-}
-
-string Event::getDayOfWeek(Date *date) {
-    
-}
-
-string Event::getDayString(Date *date) {
-    
-}
-
-string Event::getLocation() {
-    
-}
-
-string Event::getEventName() {
-    
-}
-
-string Event::getCalendarName() {
-    
-}
-
-bool Event::isAllDay() {
-    
-}
-
-string Event::getUID() {
-    
-}
-
-string Event::getDescription() {
-    
-}
-
-double Event::calculateDuration() {
-    
-}
-
 void Event::print() {
     fout <<
     calendarName << ',' <<
@@ -113,6 +65,112 @@ void Event::print() {
     
     
 }
+
+string Event::getYear(Date *date) {
+    return date->getYear();
+}
+
+string Event::getMonth(Date *date) {
+    return date->getMonth();
+
+}
+
+string Event::getDay(Date *date) {
+    return date->getDay();
+
+}
+
+string Event::getDayOfWeek(Date *date) {
+    return date->getDayOfWeek();
+
+}
+
+string Event::getDayString(Date *date) {
+    return date->getDayString();
+
+}
+
+string Event::getLocation() {
+    return location;
+
+}
+
+string Event::getEventName() {
+    return eventName;
+}
+
+string Event::getCalendarName() {
+    return calendarName;
+}
+
+bool Event::isAllDay() {
+    return allDay;
+}
+
+string Event::getUID() {
+    return UID;
+}
+
+string Event::getDescription() {
+    return description;
+}
+
+double Event::calculateDuration() {
+	// dateEnd - dateStart
+	// perhaps take date entries piece-by-piece, or just find Gregorian calendar lib
+	// return number of hours: can convert later
+    double hours = 0;
+    
+    
+    return hours;
+}
+
+void setYear(Date *date) {
+    
+}
+
+void setMonth(Date *date) {
+    
+}
+
+void setDay(Date *date) {
+    
+}
+
+void setDayOfWeek(Date *date) {
+    
+}
+
+void setDayString(Date *date) {
+    
+}
+
+void setLocation(string locat) {
+    
+}
+
+void setEventName(string name) {
+    
+}
+
+void setCalendarName(string calName) {
+    
+}
+
+void setAllDay(bool isAllDay) {
+    
+}
+
+void setUID(string UIDs) {
+    
+}
+
+void setDescription(string descript) {
+    
+}
+
+
+
 
 
 

@@ -41,6 +41,14 @@ public:
     string getMinute();
     string getDayString();
     
+    void setYear(int year);
+    void setMonth(int month);
+    void setDayOfWeek(int dayOfWeek);
+    void setDay(int day);
+    void setHour(int hour);
+    void setMinute(int minute);
+    void setDayString(string dayString);
+    
     void toString();
     
 };

@@ -72,6 +72,18 @@ public:
     string getUID();
     string getDescription();
     
+    void setYear(Date *date);
+    void setMonth(Date *date);
+    void setDay(Date *date);
+    void setDayOfWeek(Date *date);
+    void setDayString(Date *date);
+    void setLocation(string locat);
+    void setEventName(string name);
+    void setCalendarName(string calName);
+    void setAllDay(bool isAllDay);
+    void setUID(string UIDs);
+    void setDescription(string descript);
+    
     double calculateDuration();
     void print();
 };
