@@ -26,33 +26,22 @@ int main(int argc, const char * argv[])
     ifstream fin;
     ofstream fout;
     
-    fin.open('input.txt');		// use shell script 'cat' to combine all the ICS files into one text file
-    fout.open('output.csv');		// allows reading by MATLAB
+    fin.open("input.txt");		// use shell script 'cat' to combine all the ICS files into one text file
+    fout.open("output.csv");		// allows reading by MATLAB
     
-    
-    Scanner scanner(source_file, source_name, date, print);
+    Scanner scanner(fin);
     
     do
 	{
 	event = scanner.getEvent();
-        event.print(fout);
-	} while (event->getEvent() != END_OF_FILE);		// actually have "END:VCALENDAR"
+        event->print();
+	} while (scanner->getEvent() != END_OF_FILE);		// actually have "END:VCALENDAR"
     
-    delete token;
+	//delete token;
     fin.close();
     fout.close();
     
     return 0;
-}
-FILE *init_lister(const char *name, char source_file_name[], char dte[])
-{
-    time_t timer;
-    FILE *file;
-    strcpy(source_file_name, name);
-    file = fopen(source_file_name, "r");
-    time(&timer);
-    strcpy(dte, asctime(localtime(&timer)));
-    return file;
 }
 
 

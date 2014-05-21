@@ -16,7 +16,7 @@
  int i = std::stoi(s);
  */
 
-Event::Event(fstream fout,
+Event::Event(ofstream & outfile,
 	     string name,
 	     string descript,
 	     string locat,
@@ -28,7 +28,8 @@ Event::Event(fstream fout,
 	     string dateEndString,
 	     string dateStampString,
 	     string dateCreatedString,
-	     string dateModifiedString) :
+	     string dateModifiedString)
+: fout(outfile),
 eventName(name),
 description(descript),
 location(locat),

@@ -17,9 +17,13 @@
 #include "Date.h"
 #include "String.h"
 #include "common.h"
-  // include some sort of calendar lib for calculating relative dates?
+
+
+    // include some sort of calendar lib for calculating relative dates?
 
 using namespace std;
+using std::ofstream;
+
 
 class Event {
 private:
@@ -41,12 +45,12 @@ private:
     bool allDay;
     int numGuests;
     string UID;
-    fstream fout;
+    ofstream& fout;
     
     double eventDuration;
     
 public:
-    Event(fstream fout,
+    Event(ofstream& fout,
 	  string name,
 	  string descript,
 	  string locat,
