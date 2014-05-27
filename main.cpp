@@ -17,31 +17,46 @@
 #include "Date.h"
 #include "Event.h"
 
-FILE *init_lister(const char *name, char source_file_name[], char dte[]);
-void quit_scanner(FILE *src_file, Event *list);
+using namespace std;
+void run(ifstream & infile, ofstream & fout);
 
 int main(int argc, const char * argv[])
 {
-    Event *event = NULL;
     ifstream fin;
     ofstream fout;
+    bool isEOF = false;
     
     fin.open("input.txt");		// use shell script 'cat' to combine all the ICS files into one text file
     fout.open("output.csv");		// allows reading by MATLAB
-    
-    Scanner scanner(fin);
-    
-    do
-	{
-	event = scanner.getEvent();
-        event->print();
-	} while (scanner->getEvent() != END_OF_FILE);		// actually have "END:VCALENDAR"
-    
-	//delete token;
-    fin.close();
-    fout.close();
+   
+    while (!isEOF) {
+	run(fin, fout);
+	
+	if (EOF) {			// not sure if this operator does what you think it does
+	    isEOF = true;
+	    fin.close();
+	    fout.close();
+	}
+    }
+
     
     return 0;
 }
+
+void run(ifstream & fin, ofstream & fout) {
+    bool calDone = false;
+    Event *newEvent = NULL;
+    Event *calEvent = NULL;		// use this to copy calendar data to each newEvent
+
+    Scanner scanner(fin);
+    
+    calEvent->init_calendar();
+    while (!calDone) {
+	Event newEvent = *scanner.getEvent(&calEvent);		// need to add to parameter listing for event
+	newEvent.print();
+	    // somehow delete event
+    }
+}
+
 
 
