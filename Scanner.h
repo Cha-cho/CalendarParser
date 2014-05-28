@@ -13,10 +13,12 @@
 #define Lab4_Scanner_h
 
 #include "common.h"
-#include <fstream>
 #include "Event.h"
+#include <fstream>
 #include <string.h>
+#include <stdio.h>
 
+using std::string;
 
 class Scanner {
 private:
@@ -24,16 +26,15 @@ private:
     string tagString;
     string fieldString;
     Event *newEvent;
+    Event *calEvent;			// stores info on current calendar to be copied to each newEvent
     
-    string getBeforeColon(string inString);
-    string getAfterColon(string inString);			// not sure what the right parameters here should be or the return: see what works
-    
+    void stringParse();
     ifstream& fin;
     
 public:
     Scanner(ifstream& infile);
     ~Scanner();
-    Event getEvent(Event* calEvent);
+    Event getEvent(Event* calEvent);	// copy calEvent data into each newEvent in getEvent at the beginning
 
 };
 

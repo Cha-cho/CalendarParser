@@ -21,9 +21,11 @@ Scanner::~Scanner() {
 }
 
 Event Scanner::getEvent(Event* calEvent) {
-    fin >> inString;
-    tagString = getBeforeColon(inString);
-    fieldString = getAfterColon(inString);
+    char* inChar;
+    FILE* file = fopen("input.txt", "r");	// opens input file for fgets
+    fgets (inChar, 500, file);			// get entire line until '\n' char (includes whitespaces, which is the important part)
+    string inString(inChar);
+    stringParse();
     
     if (tagString == "BEGIN") {
 	    // could be the begining of Event, Calendar, or other (like timezone or alarm)
@@ -90,13 +92,14 @@ Event Scanner::getEvent(Event* calEvent) {
     return *newEvent;		// make sure to differentiate between this and calEvent
 }
 
-string Scanner::getBeforeColon(string inString) {
+void Scanner::stringParse() {
+    size_t colon = inString.find(":");				// finds index of colon in string
+    size_t length = inString.length();				// finds length of whole string
+    tagString = inString.substr(0, colon);			// substring of 0->colon
+    fieldString = inString.substr(colon + 1, length - 1);	// substring from colon->end
     
 }
 
-string Scanner::getAfterColon(string inString) {
-    
-}
 
 
 
