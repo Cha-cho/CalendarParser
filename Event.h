@@ -76,6 +76,22 @@ public:
     string getUID();
     string getDescription();
     
+    
+    Date getDateStart();
+    Date getDateEnd();
+    Date getDateStamp();
+    Date getDateCreated();
+    Date getDateModified();
+    
+    
+    void setDateStart(string dateString);
+    void setDateEnd(string dateString);
+    void setDateStamp(string dateString);
+    void setDateCreated(string dateString);
+    void setDateModified(string dateString);
+    
+    
+    
     void setYear(Date *date);
     void setMonth(Date *date);
     void setDay(Date *date);

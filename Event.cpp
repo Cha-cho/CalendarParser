@@ -67,6 +67,46 @@ void Event::print() {
     
 }
 
+Date Event::getDateStart() {
+    return *dateStart;
+}
+
+Date Event::getDateEnd() {
+    return *dateEnd;
+}
+
+Date Event::getDateStamp() {
+    return *dateStamp;
+}
+
+Date Event::getDateCreated() {
+    return *dateCreated;
+}
+
+Date Event::getDateModified() {
+    return *dateModified;
+}
+
+void Event::setDateStart(string dateString) {
+    
+}
+
+void Event::setDateEnd(string dateString) {
+    
+}
+
+void Event::setDateStamp(string dateString) {
+    
+}
+
+void Event::setDateCreated(string dateString) {
+    
+}
+
+void Event::setDateModified(string dateString) {
+    
+}
+
 string Event::getYear(Date *date) {
     return date->getYear();
 }

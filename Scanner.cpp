@@ -28,55 +28,76 @@ Event Scanner::getEvent(Event* calEvent) {
     if (tagString == "BEGIN") {
 	    // could be the begining of Event, Calendar, or other (like timezone or alarm)
 	    // probably will need own switch cases here
+    } else if (tagString == "END") {
+	    // if statements for the word that follows
+	    // grab same if statements as from BEGIN
     } else if (tagString == "X-WR-CALNAME") {
 	calEvent->setEventName(fieldString);
-    } else if (tagString == "X-WR-TIMEZONE") {
-	<#statements#>
-    } else if (tagString == "TZOFFSETFROM") {
-	<#statements#>
-    } else if (tagString == "TZNAME") {
-	<#statements#>
     } else if (tagString == "DTSTART;VALUE=DATE") {
-	
+	    // not sure what the difference between just regular DTSTART is
+	    // maybe some sort of version thing
+	newEvent->setDateStart(fieldString);
     } else if (tagString == "DTEND;VALUE=DATE") {
-	<#statements#>
+	    // not sure what the difference between just regular DTSTART is
+	    // maybe some sort of version thing
+	newEvent->setDateEnd(fieldString);
     } else if (tagString == "DTSTAMP") {
-	<#statements#>
+	newEvent->setDateStamp(fieldString);
     } else if (tagString == "CREATED") {
-	<#statements#>
+	newEvent->setDateCreated(fieldString);
     } else if (tagString == "DESCRIPTION") {
-	<#statements#>
+	newEvent->setDescription(fieldString);
     } else if (tagString == "LAST-MODIFIED") {
-	<#statements#>
+	newEvent->setDateModified(fieldString);
     } else if (tagString == "LOCATION") {
-	<#statements#>
+	newEvent->setLocation(fieldString);
     } else if (tagString == "SUMMARY") {
-	<#statements#>
-    } else if (tagString == "END") {
-	<#statements#>
-    } else if (tagString == "UID") {
-	<#statements#>
+	newEvent->setEventName(fieldString);
     } else if (tagString == "DTSTART") {
-	<#statements#>
+	newEvent->setDateStart(fieldString);
     } else if (tagString == "DTEND") {
-	<#statements#>
-    } else if (tagString == "CLASS") {
-	<#statements#>
-    } else if (tagString == "SEQUENCE") {
-	<#statements#>
-    } else if (tagString == "TRANSP") {
-	<#statements#>
-    } else if (tagString == "STATUS") {
-	<#statements#>
-    } else {
+	newEvent->setDateEnd(fieldString);
 	
+	/*********************************************************************
+	 // fields may not be necessary, but add code for easy future functionality
+	 
+	 else if (tagString == "UID") {
+	 newEvent->setUID(fieldString);
+	 } else if (tagString == "CLASS") {
+	 newEvent->setClass(fieldString);
+	 } else if (tagString == "SEQUENCE") {
+	 newEvent->setSequence(fieldString);
+	 } else if (tagString == "TRANSP") {
+	 newEvent->setTransparency(fieldString);
+	 } else if (tagString == "STATUS") {
+	 newEvent->setStatus(fieldString);
+	 } else if (tagString == "X-WR-TIMEZONE") {
+	 // some future timezone info here
+	 } else if (tagString == "TZOFFSETFROM") {
+	 // will need to add to date class to find actual time of event at TZ
+	 // will need to also parse out as a field in date
+	 } else if (tagString == "TZNAME") {
+	 // some future timezone info here
+	 }
+	 *********************************************************************/
+	
+	
+    } else {
+	    // some sort of error message perhaps should go here
     }
-}
-
-
-}
-
-Event Scanner::init_calendar() {
     
     
+    return *newEvent;		// make sure to differentiate between this and calEvent
 }
+
+string Scanner::getBeforeColon(string inString) {
+    
+}
+
+string Scanner::getAfterColon(string inString) {
+    
+}
+
+
+
+
