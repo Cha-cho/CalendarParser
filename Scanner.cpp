@@ -43,6 +43,8 @@ Scanner::~Scanner()
 {
 	// delete newEvent;
 }
+
+/*
 bool Scanner::getSourceLine(char source_buffer[])
 {
     char print_buffer[MAX_SOURCE_LINE_LENGTH + 9];
