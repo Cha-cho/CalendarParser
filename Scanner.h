@@ -12,37 +12,28 @@
 #ifndef Lab4_Scanner_h
 #define Lab4_Scanner_h
 
-#include "my_ctype.h"
 #include "common.h"
 #include <fstream>
 #include "Event.h"
+#include <string.h>
 
 
-class Scanner
-{
+class Scanner {
 private:
-    /*********************
-     Private Variables for Scanner
-     Must be initialized in the constructor.
-     *********************/
-
-    string categoryName;
-    string fieldName;
-    char *linePtr;
-    string lineString;
+    string inString;
+    string tagString;
+    string fieldString;
     Event *newEvent;
     
-    void skipToColon(string lineString);		// not sure how to do this versus pointer manipulation
-    string getCategoryName(char *linePtr);
-    string getFieldName(char *linePtr);			// not sure what the right parameters here should be or the return: see what works
-    string getNextLine(char *linePtr);			// moves to next line for extraction, if done with current line
+    string getBeforeColon(string inString);
+    string getAfterColon(string inString);			// not sure what the right parameters here should be or the return: see what works
     
     ifstream& fin;
     
 public:
     Scanner(ifstream& infile);
     ~Scanner();
-    Event* getEvent();
+    Event getEvent(Event* calEvent);
 
 };
 
