@@ -27,6 +27,10 @@ Event Scanner::getEvent(Event* calEvent) {
     string inString(inChar);
     stringParse();
     
+	/*******************************
+	 Here is where you should copy calEvent fields into newEvent */
+    
+    
     if (tagString == "BEGIN") {
 	    // could be the begining of Event, Calendar, or other (like timezone or alarm)
 	    // probably will need own switch cases here
