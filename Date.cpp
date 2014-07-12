@@ -10,3 +10,74 @@
  */
 
 #include "Date.h"
+
+Date::Date(string dateString) {			// parses out the formatted string
+    
+}
+
+Date::~Date() {
+    
+}
+
+string Date::getYear() {
+    
+}
+
+string Date::getMonth() {
+    
+}
+
+string Date::getDayOfWeek() {
+    
+}
+
+string Date::getDay() {
+    
+}
+
+string Date::getHour() {
+    
+}
+
+string Date::getMinute() {
+    
+}
+
+string Date::getDayString() {
+    
+}
+
+
+void Date::setYear(int year) {
+    
+}
+
+void Date::setMonth(int month) {
+    
+}
+
+void Date::setDayOfWeek(int dayOfWeek) {
+    
+}
+
+void Date::setDay(int day) {
+    
+}
+
+void Date::setHour(int hour) {
+    
+}
+
+void Date::setMinute(int minute) {
+    
+}
+
+void Date::setDayString(string dayString) {
+    
+}
+
+void Date::toString() {
+    
+}
+
+

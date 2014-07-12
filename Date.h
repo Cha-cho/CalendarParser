@@ -16,6 +16,7 @@
     // include some sort of calendar lib?
 
 using namespace std;
+using std::string;
 
 class Date {
 private:
