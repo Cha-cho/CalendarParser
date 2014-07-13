@@ -46,6 +46,8 @@ private:
     int numGuests;
     string UID;
     ofstream& fout;
+    int timeOffset;		// only hours for now. Perhaps add minutes later for int'l
+    string timezoneName;
     
     double eventDuration;
     
@@ -75,6 +77,8 @@ public:
     bool isAllDay();
     string getUID();
     string getDescription();
+    int getTimeOffset();
+    string getTimezoneName();
     
     
     Date getDateStart();
@@ -103,7 +107,9 @@ public:
     void setAllDay(bool isAllDay);
     void setUID(string UIDs);
     void setDescription(string descript);
-    
+    void setTimeOffset(string fieldString);
+    void setTimezoneName(string fieldString);
+
     double calculateDuration();
     void print();
 };

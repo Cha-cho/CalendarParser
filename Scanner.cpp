@@ -63,6 +63,16 @@ Event Scanner::getEvent(Event* calEvent) {
 	newEvent->setDateStart(fieldString);
     } else if (tagString == "DTEND") {
 	newEvent->setDateEnd(fieldString);
+    } else if (tagString == "TZOFFSETFROM") {
+	    // will need to add to date class to find actual time of event at TZ
+	    // will need to also parse out as a field in date
+	newEvent->setTimeOffset(fieldString);
+    } else if (tagString == "TZNAME") {
+	    // some future timezone info here
+	newEvent->setTimezoneName(fieldString);
+
+    }
+
 	
 	/*********************************************************************
 	 // fields may not be necessary, but add code for easy future functionality
@@ -79,13 +89,7 @@ Event Scanner::getEvent(Event* calEvent) {
 	 newEvent->setStatus(fieldString);
 	 } else if (tagString == "X-WR-TIMEZONE") {
 	 // some future timezone info here
-	 } else if (tagString == "TZOFFSETFROM") {
-	 // will need to add to date class to find actual time of event at TZ
-	 // will need to also parse out as a field in date
-	 } else if (tagString == "TZNAME") {
-	 // some future timezone info here
-	 }
-	 *********************************************************************/
+	 	 *********************************************************************/
 	
 	
     } else {

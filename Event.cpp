@@ -156,6 +156,14 @@ string Event::getDescription() {
     return description;
 }
 
+int Event::getTimeOffset() {
+    return timeOffset;
+}
+
+string Event::getTimezoneName() {
+    return timezoneName;
+}
+
 double Event::calculateDuration() {
 	// dateEnd - dateStart
 	// perhaps take date entries piece-by-piece, or just find Gregorian calendar lib
@@ -166,50 +174,57 @@ double Event::calculateDuration() {
     return hours;
 }
 
-void setYear(Date *date) {
+void Event::setYear(Date *date) {
     
 }
 
-void setMonth(Date *date) {
+void Event::setMonth(Date *date) {
     
 }
 
-void setDay(Date *date) {
+void Event::setDay(Date *date) {
     
 }
 
-void setDayOfWeek(Date *date) {
+void Event::setDayOfWeek(Date *date) {
     
 }
 
-void setDayString(Date *date) {
+void Event::setDayString(Date *date) {
     
 }
 
-void setLocation(string locat) {
+void Event::setLocation(string locat) {
     
 }
 
-void setEventName(string name) {
+void Event::setEventName(string name) {
     
 }
 
-void setCalendarName(string calName) {
+void Event::setCalendarName(string calName) {
     
 }
 
-void setAllDay(bool isAllDay) {
+void Event::setAllDay(bool isAllDay) {
     
 }
 
-void setUID(string UIDs) {
+void Event::setUID(string UIDs) {
     
 }
 
-void setDescription(string descript) {
+void Event::setDescription(string descript) {
     
 }
 
+void Event::setTimeOffset(string fieldString) {
+    
+}
+
+void Event::setTimezoneName(string fieldString) {
+    
+}
 
 
 
