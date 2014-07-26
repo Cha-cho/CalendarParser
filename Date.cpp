@@ -23,7 +23,7 @@ Date::Date(string dateString) {
 	// parses out the formatted string into individual strings
 	// simply stores strings
 	// any sort of date calculations require 'stoi' to convert to int
-
+    
     
     
     
@@ -34,7 +34,7 @@ Date::Date(string dateString) {
     hour = dateString.substr(9,2);
     minute = dateString.substr(11,2);
     
-
+    
 }
 
 Date::~Date() {
@@ -49,10 +49,6 @@ string Date::getMonth() {
     return month;
 }
 
-string Date::getDayOfWeek() {
-    
-}
-
 string Date::getDay() {
     return day;
 }
@@ -65,47 +61,54 @@ string Date::getMinute() {
     return minute;
 }
 
-string Date::getDayString() {
-    
-}
 
 /*
-void Date::setYear(int year) {
-    this->year = year;
-}
+ string Date::getDayOfWeek() {
+ 
+ }
+ 
+ string Date::getDayString() {
+ 
+ }
+ 
+ 
+ void Date::setYear(int year) {
+ this->year = year;
+ }
+ 
+ void Date::setMonth(int month) {
+ this->month = month;
+ }
+ 
+ void Date::setDayOfWeek(int dayOfWeek) {
+ this->dayOfWeek = dayOfWeek;
+ }
+ 
+ void Date::setDay(int day) {
+ this->day = day;
+ }
+ 
+ void Date::setHour(int hour) {
+ this->hour = hour;
+ }
+ 
+ void Date::setMinute(int minute) {
+ this->minute = minute;
+ }
+ 
+ void Date::setDayString(string dayString) {
+ this->dayString = dayString;
+ }
+ */
 
-void Date::setMonth(int month) {
-    this->month = month;
-}
 
-void Date::setDayOfWeek(int dayOfWeek) {
-    this->dayOfWeek = dayOfWeek;
-}
-
-void Date::setDay(int day) {
-    this->day = day;
-}
-
-void Date::setHour(int hour) {
-    this->hour = hour;
-}
-
-void Date::setMinute(int minute) {
-    this->minute = minute;
-}
-
-void Date::setDayString(string dayString) {
-    this->dayString = dayString;
-}
-*/
 void Date::toString() {
 	// not sure, but probably use this to convert to proper ICS format
-
+    
         // format of date string: 2013 11 17 T 00 45 00 Z
 	// 			  yyyy mm dd   hh mm ss
     
-    
-    
+    string output = year + month + day + 'T' + hour + minute + "00Z";
 }
 
 
