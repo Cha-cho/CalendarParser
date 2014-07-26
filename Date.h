@@ -54,7 +54,8 @@ public:
     void setMinute(int minute);
     void setDayString(string dayString);
     
-    void toString();
+    void toSpreadsheetDate();
+    void toDateString();
     
 };
 

@@ -166,11 +166,27 @@ string Event::getTimezoneName() {
 
 double Event::calculateDuration() {
 	// dateEnd - dateStart
+	// (yearEnd - yearStart)*365.25*24 + (dayEnd - dayStart)*24 + (hourEnd - hourStart) + (minEnd - minStart)/60
+    	// 				     ^ideally would have 'day of year' and have leap years taken care of
 	// perhaps take date entries piece-by-piece, or just find Gregorian calendar lib
-	// return number of hours: can convert later
+	// return number of hours in decimal format: can convert later
     double hours = 0;
     
+    int numYear = stoi(dateEnd->getYear()) - stoi(dateStart->getYear());
+    int numDay = stoi(dateEnd->getDay()) - stoi(dateStart->getDay());
+    int numHour = stoi(dateEnd->getHour()) - stoi(dateStart->getHour());
+    int numMinute = stoi(dateEnd->getMinute()) - stoi(dateStart->getMinute());
+
+	// enter cases where day may be negative (1st of month - 31st of month)
+    if (numDay < 0) {
+	numDay = 1;
+    } else if (numHour < 0) {
+	numHour += 24;
+    } else if (numMinute < 0) {
+	numHour += 60;
+    }
     
+    hours = numYear*365.25*24 + numDay*24 + numHour + numMinute/60;
     return hours;
 }
 

@@ -91,10 +91,6 @@ Event Scanner::getEvent(Event* calEvent) {
 	 // some future timezone info here
 	 	 *********************************************************************/
 	
-	
-    } else {
-	    // some sort of error message perhaps should go here
-    }
     
     
     return *newEvent;		// make sure to differentiate between this and calEvent
