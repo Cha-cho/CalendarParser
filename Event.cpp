@@ -218,12 +218,18 @@ void Event::setDescription(string descript) {
     
 }
 
-void Event::setTimeOffset(string fieldString) {
+void Event::setTimeOffset(const string fieldString) {
+	// format: TZOFFSETTO:-0700
+	// fieldstring: "-0700"
+    	// 		 ±hhmm
     
+    timeOffset = stoi(fieldString) / 100;		// make sure this is working properly
+			
+	// not exactly the way I want this to work, but it will suffice for the time being
 }
 
 void Event::setTimezoneName(string fieldString) {
-    
+    timezoneName = fieldString;		// e.g. "MST"
 }
 
 

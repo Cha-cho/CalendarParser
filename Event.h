@@ -23,6 +23,7 @@
 
 using namespace std;
 using std::ofstream;
+using std::stoi;
 
 
 class Event {
