@@ -12,14 +12,29 @@
 
     //starting format of date string: 2013 11 17 T 00 45 00 Z
     // 				      yyyy mm dd   hh mm ss
+    //				      0123 45 67 8 90 12 34 5
 
     // timezone for AZ is always: hour - 7
     // from the timeoffset data field
 
 #include "Date.h"
 
-Date::Date(string dateString) {			// parses out the formatted string
+Date::Date(string dateString) {
+	// parses out the formatted string into individual strings
+	// simply stores strings
+	// any sort of date calculations require 'stoi' to convert to int
+
     
+    
+    
+	// use substring class (position, length) to parse parts of dateString
+    year = dateString.substr(0,4);
+    month = dateString.substr(4,2);
+    day = dateString.substr(6,2);
+    hour = dateString.substr(9,2);
+    minute = dateString.substr(11,2);
+    
+
 }
 
 Date::~Date() {
@@ -27,13 +42,11 @@ Date::~Date() {
 }
 
 string Date::getYear() {
-	// get first four digits
-    
+    return year;
 }
 
 string Date::getMonth() {
-	// get next two digits
-    
+    return month;
 }
 
 string Date::getDayOfWeek() {
@@ -41,25 +54,22 @@ string Date::getDayOfWeek() {
 }
 
 string Date::getDay() {
-	// get next two digits
-    
+    return day;
 }
 
 string Date::getHour() {
-	// skip 'T' char and get two digits
-    
+    return hour;
 }
 
 string Date::getMinute() {
-	// get next two digits
-    
+    return minute;
 }
 
 string Date::getDayString() {
     
 }
 
-
+/*
 void Date::setYear(int year) {
     this->year = year;
 }
@@ -87,7 +97,7 @@ void Date::setMinute(int minute) {
 void Date::setDayString(string dayString) {
     this->dayString = dayString;
 }
-
+*/
 void Date::toString() {
 	// not sure, but probably use this to convert to proper ICS format
 

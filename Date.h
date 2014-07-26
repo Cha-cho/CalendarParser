@@ -17,15 +17,19 @@
 
 using namespace std;
 using std::string;
+using std::stoi;
+
 
 class Date {
 private:
-    int year;
-    int month;
-    int dayOfWeek;
-    int day;
-    int hour;
-    int minute;
+	// store each date field as string
+	// only convert to int for time calculations
+    string year;
+    string month;
+    string dayOfWeek;
+    string day;
+    string hour;
+    string minute;
     string dayString;
     
     string dateString;
