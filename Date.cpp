@@ -102,8 +102,7 @@ string Date::getMinute() {
  */
 
 void Date::toSpreadsheetDate() {
-	// not sure, but probably use this to convert to proper ICS format
-    
+	// may need this to convert to friendly spreadsheet format
         // format of date string: 2013 11 17 T 00 45 00 Z
 	// 			  yyyy mm dd   hh mm ss
     
@@ -111,7 +110,7 @@ void Date::toSpreadsheetDate() {
 }
 
 void Date::toDateString() {
-	// not sure, but probably use this to convert to proper ICS format
+	// converts to original ICS formatting
     
         // format of date string: 2013 11 17 T 00 45 00 Z
 	// 			  yyyy mm dd   hh mm ss
