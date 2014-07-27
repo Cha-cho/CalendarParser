@@ -121,6 +121,7 @@ string Event::getDay(Date *date) {
 
 }
 
+/*
 string Event::getDayOfWeek(Date *date) {
     return date->getDayOfWeek();
 
@@ -130,6 +131,7 @@ string Event::getDayString(Date *date) {
     return date->getDayString();
 
 }
+*/
 
 string Event::getLocation() {
     return location;
@@ -202,6 +204,7 @@ void Event::setDay(Date *date) {
     
 }
 
+/*
 void Event::setDayOfWeek(Date *date) {
     
 }
@@ -209,6 +212,8 @@ void Event::setDayOfWeek(Date *date) {
 void Event::setDayString(Date *date) {
     
 }
+*/
+
 
 void Event::setLocation(string locat) {
     

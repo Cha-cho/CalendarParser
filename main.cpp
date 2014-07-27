@@ -27,12 +27,12 @@ int main(int argc, const char * argv[])
     bool isEOF = false;
     
     fin.open("input.txt");		// use shell script 'cat' to combine all the ICS files into one text file
-    fout.open("output.csv");		// allows reading by MATLAB
+    fout.open("output.txt");		// allows reading by MATLAB
    
     while (!isEOF) {
 	run(fin, fout);
 	
-	if (EOF) {			// not sure if this operator does what you think it does
+	if (EOF) {			// not sure if this thing does what you think it does
 	    isEOF = true;
 	    fin.close();
 	    fout.close();
@@ -44,15 +44,18 @@ int main(int argc, const char * argv[])
 }
 
 void run(ifstream & fin, ofstream & fout) {
+	// certain calendar properties will be grabbed, and then won't change until the next calendar is accessed
+	// properties: calName, timezone
+    	// set up as some sort of global var that can be accessed with each new event, updated with the new calendar
+    
     bool calDone = false;
-    Event *newEvent = NULL;
-    Event *calEvent = NULL;		// use this to copy calendar data to each newEvent
+	//Event *newEvent = NULL;
 
     Scanner scanner(fin);
     
-    calEvent->init_calendar();
     while (!calDone) {
-	Event newEvent = *scanner.getEvent(&calEvent);		// need to add to parameter listing for event
+	cout << "Next event" << endl;
+	Event newEvent = scanner.getEvent();		// need to add to parameter listing for event
 	newEvent.print();
 	    // somehow delete event
     }

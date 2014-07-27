@@ -70,8 +70,12 @@ public:
     string getYear(Date *date);
     string getMonth(Date *date);
     string getDay(Date *date);
+    
+    /*
     string getDayOfWeek(Date *date);
     string getDayString(Date *date);
+    */
+    
     string getLocation();
     string getEventName();
     string getCalendarName();

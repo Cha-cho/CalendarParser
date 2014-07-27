@@ -22,19 +22,21 @@ using std::string;
 
 class Scanner {
 private:
+    string currentCalendar;
+    string timeOffset;
+    
     string inString;
     string tagString;
     string fieldString;
     Event *newEvent;
-    Event *calEvent;			// stores info on current calendar to be copied to each newEvent
     
-    void stringParse();
+    void stringParse(string inString);
     ifstream& fin;
     
 public:
     Scanner(ifstream& infile);
     ~Scanner();
-    Event getEvent(Event* calEvent);	// copy calEvent data into each newEvent in getEvent at the beginning
+    Event getEvent();	// copy calEvent data into each newEvent in getEvent at the beginning
 
 };
 

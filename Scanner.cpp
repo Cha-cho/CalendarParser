@@ -20,59 +20,81 @@ Scanner::~Scanner() {
 	// delete newEvent;
 }
 
-Event Scanner::getEvent(Event* calEvent) {
-    char* inChar;
+Event Scanner::getEvent() {
+    bool calEnd = false;
+    char inChar[500];
     FILE* file = fopen("input.txt", "r");	// opens input file for fgets
-    fgets (inChar, 500, file);			// get entire line until '\n' char (includes whitespaces, which is the important part)
-    string inString(inChar);
-    stringParse();
+    int line = 0;
     
-	/*******************************
-	 Here is where you should copy calEvent fields into newEvent */
-    
-    
-    if (tagString == "BEGIN") {
-	    // could be the begining of Event, Calendar, or other (like timezone or alarm)
-	    // probably will need own switch cases here
-    } else if (tagString == "END") {
-	    // if statements for the word that follows
-	    // grab same if statements as from BEGIN
-    } else if (tagString == "X-WR-CALNAME") {
-	calEvent->setEventName(fieldString);
-    } else if (tagString == "DTSTART;VALUE=DATE") {
-	    // not sure what the difference between just regular DTSTART is
-	    // maybe some sort of version thing
-	newEvent->setDateStart(fieldString);
-    } else if (tagString == "DTEND;VALUE=DATE") {
-	    // not sure what the difference between just regular DTSTART is
-	    // maybe some sort of version thing
-	newEvent->setDateEnd(fieldString);
-    } else if (tagString == "DTSTAMP") {
-	newEvent->setDateStamp(fieldString);
-    } else if (tagString == "CREATED") {
-	newEvent->setDateCreated(fieldString);
-    } else if (tagString == "DESCRIPTION") {
-	newEvent->setDescription(fieldString);
-    } else if (tagString == "LAST-MODIFIED") {
-	newEvent->setDateModified(fieldString);
-    } else if (tagString == "LOCATION") {
-	newEvent->setLocation(fieldString);
-    } else if (tagString == "SUMMARY") {
-	newEvent->setEventName(fieldString);
-    } else if (tagString == "DTSTART") {
-	newEvent->setDateStart(fieldString);
-    } else if (tagString == "DTEND") {
-	newEvent->setDateEnd(fieldString);
-    } else if (tagString == "TZOFFSETFROM") {
-	    // will need to add to date class to find actual time of event at TZ
-	    // will need to also parse out as a field in date
-	newEvent->setTimeOffset(fieldString);
-    } else if (tagString == "TZNAME") {
-	    // some future timezone info here
-	newEvent->setTimezoneName(fieldString);
-
-    }
-
+    /*******************************
+     Here is where you should copy calEvent fields into newEvent */
+    while (line < 116599) {
+	
+	fgets (inChar, 500, file);			// get entire line until '\n' char (includes whitespaces, which is the important part)
+	string inString(inChar);
+	stringParse(inString);
+	line++;
+	
+	if (tagString == "BEGIN") {
+		// could be the begining of Event, Calendar, or other (like timezone or alarm)
+		// probably will need own switch cases here
+	    if (fieldString == "VEVENT") {
+		newEvent->setCalendarName(currentCalendar);
+		newEvent->setTimeOffset(timeOffset);
+	    }
+	    
+	} else if (tagString == "END") {
+		// if statements for the word that follows
+		// grab same if statements as from BEGIN
+	    
+	    cout << fieldString << endl;
+	    
+	    if (fieldString == "VEVENT") {
+		
+		cout << "<<<<<<<<<<END OF EVENT>>>>>>>>>>>>>>>" << endl;
+		    //calEnd = true;
+	    } else if (fieldString == "VCALENDAR") {
+		cout << "END_CALENDAR" << endl;
+	    }
+	   
+	    
+	    
+	} else if (tagString == "X-WR-CALNAME") {
+	    currentCalendar = fieldString;
+	} else if (tagString == "DTSTART;VALUE=DATE") {
+		// not sure what the difference between just regular DTSTART is
+		// maybe some sort of version thing
+	    newEvent->setDateStart(fieldString);
+	} else if (tagString == "DTEND;VALUE=DATE") {
+		// not sure what the difference between just regular DTSTART is
+		// maybe some sort of version thing
+	    newEvent->setDateEnd(fieldString);
+	} else if (tagString == "DTSTAMP") {
+	    newEvent->setDateStamp(fieldString);
+	} else if (tagString == "CREATED") {
+	    newEvent->setDateCreated(fieldString);
+	} else if (tagString == "DESCRIPTION") {
+	    newEvent->setDescription(fieldString);
+	} else if (tagString == "LAST-MODIFIED") {
+	    newEvent->setDateModified(fieldString);
+	} else if (tagString == "LOCATION") {
+	    newEvent->setLocation(fieldString);
+	} else if (tagString == "SUMMARY") {
+	    newEvent->setEventName(fieldString);
+	} else if (tagString == "DTSTART") {
+	    newEvent->setDateStart(fieldString);
+	} else if (tagString == "DTEND") {
+	    newEvent->setDateEnd(fieldString);
+	} else if (tagString == "TZOFFSETFROM") {
+		// will need to add to date class to find actual time of event at TZ
+		// will need to also parse out as a field in date
+	    timeOffset = fieldString;
+	} else if (tagString == "TZNAME") {
+		// some future timezone info here
+	    newEvent->setTimezoneName(fieldString);
+	    
+	}
+	
 	
 	/*********************************************************************
 	 // fields may not be necessary, but add code for easy future functionality
@@ -89,14 +111,14 @@ Event Scanner::getEvent(Event* calEvent) {
 	 newEvent->setStatus(fieldString);
 	 } else if (tagString == "X-WR-TIMEZONE") {
 	 // some future timezone info here
-	 	 *********************************************************************/
+	 *********************************************************************/
 	
-    
+    }
     
     return *newEvent;		// make sure to differentiate between this and calEvent
 }
 
-void Scanner::stringParse() {
+void Scanner::stringParse(string inString) {
     size_t colon = inString.find(":");				// finds index of colon in string
     size_t length = inString.length();				// finds length of whole string
     tagString = inString.substr(0, colon);			// substring of 0->colon
