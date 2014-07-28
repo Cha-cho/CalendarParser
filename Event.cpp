@@ -16,33 +16,16 @@
  int i = std::stoi(s);
  */
 
-Event::Event(ofstream & outfile,
-	     string name,
-	     string descript,
-	     string locat,
+Event::Event(ofstream& outfile,
 	     string calName,
-	     bool isAllDay,
-	     int nGuests,
-	     string UIDs,
-	     string dateStartString,
-	     string dateEndString,
-	     string dateStampString,
-	     string dateCreatedString,
-	     string dateModifiedString)
+	     string tzOffset)
 : fout(outfile),
-eventName(name),
-description(descript),
-location(locat),
 calendarName(calName),
-allDay(isAllDay),
-numGuests(nGuests),
-UID(UIDs),
-dateStartStr(dateStartString),
-dateEndStr(dateEndString),
-dateStampStr(dateStampString),
-dateCreatedStr(dateCreatedString),
-dateModifiedStr(dateModifiedString)
+timeOffsetString(tzOffset)
 {
+    setTimeOffsetInt(timeOffsetString);		// int used for calculations, string used for printing
+    
+    
     
 }
 
@@ -51,9 +34,9 @@ Event::~Event() {
 }
 
 void Event::print() {
-	// having issues with fout in this case
+	// FOUT NOT COOPERATING HERE
     
-    cout <<
+    fout <<
     calendarName << ',' <<
     eventName << ',' <<
     location << ',' <<
@@ -160,8 +143,12 @@ string Event::getDescription() {
     return description;
 }
 
-int Event::getTimeOffset() {
-    return timeOffset;
+string Event::getTimeOffsetString() {
+    return timeOffsetString;
+}
+
+int Event::getTimeOffsetInt() {
+    return timeOffsetInt;
 }
 
 string Event::getTimezoneName() {
@@ -241,12 +228,12 @@ void Event::setDescription(string descript) {
     
 }
 
-void Event::setTimeOffset(const string fieldString) {
+void Event::setTimeOffsetInt(const string fieldString) {
 	// format: TZOFFSETTO:-0700
 	// fieldstring: "-0700"
     	// 		 ±hhmm
     
-    timeOffset = stoi(fieldString) / 100;		// make sure this is working properly
+    timeOffsetInt = stoi(fieldString) / 100;		// make sure this is working properly
 			
 	// not exactly the way I want this to work, but it will suffice for the time being
 }

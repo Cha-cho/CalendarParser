@@ -32,11 +32,11 @@ private:
     
     void stringParse(string inString);
     ifstream& fin;
+    ofstream& fout;
     
 public:
-    Scanner(ifstream& infile);
+    Scanner(ifstream & fin, ofstream & fout);
     ~Scanner();
-    Event getEvent();	// copy calEvent data into each newEvent in getEvent at the beginning
 
 };
 

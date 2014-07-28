@@ -12,35 +12,45 @@
 #include "Scanner.h"
 
 
-Scanner::Scanner(ifstream & infile) : fin(infile) {
+Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outfile) {
+	// meat of program occurs here
+	// calendars, events, and all the details are scanned here
     
-}
-
-Scanner::~Scanner() {
-	// delete newEvent;
-}
-
-Event Scanner::getEvent() {
-    bool calEnd = false;
+    
+	//int line = 0;
+	//bool calEnd = false;
+    
+    
+    
     char inChar[500];
     FILE* file = fopen("input.txt", "r");	// opens input file for fgets
-    int line = 0;
     
-    /*******************************
-     Here is where you should copy calEvent fields into newEvent */
     while (1) {
 	
+	    // BEGIN GRAB LINE ====================================================================================================
 	fgets (inChar, 500, file);			// get entire line until '\n' char (includes whitespaces, which is the important part)
 	string inString(inChar);
 	stringParse(inString);
 	    //line++;
+	    // END GRAB LINE ====================================================================================================
 	
+	
+	
+	
+	
+	
+	
+	
+	    // BEGIN DATA CAPTURE ====================================================================================================
 	if (tagString == "BEGIN") {
 		// could be the begining of Event, Calendar, or other (like timezone or alarm)
 		// probably will need own switch cases here
 	    if (fieldString == "VEVENT\r\n") {
-		newEvent->setCalendarName(currentCalendar);
-		newEvent->setTimeOffset(timeOffset);
+		
+		    // basically creates new event with each BEGIN:VEVENT
+		newEvent = new Event(fout, currentCalendar, timeOffset);
+		
+		
 	    }
 	    
 	} else if (tagString == "END") {
@@ -52,17 +62,20 @@ Event Scanner::getEvent() {
 	    if (fieldString == "VEVENT\r\n") {
 		
 		cout << "<<<<<<<<<<END OF EVENT>>>>>>>>>>>>>>>" << endl;
-		    //calEnd = true;
+		newEvent->print();		// event data printed to CSV
+						// create new Event initialized to calName and tzOffset
+		break; 				// breaks out of current event loop to create new event
+		
+		
 	    } else if (fieldString == "VCALENDAR\r\n") {
 		cout << "END_CALENDAR" << endl;
+		/*	Could just append special character at the end of the file in shell script with cat
 		 if (EOF) {
-		    cout << "EOF" << endl;
-		    break;
-		}
+		 cout << "EOF" << endl;
+		 break;
+		 }
+		 */
 	    }
-	   
-	    
-	    
 	} else if (tagString == "X-WR-CALNAME") {
 	    currentCalendar = fieldString;
 	} else if (tagString == "DTSTART;VALUE=DATE") {
@@ -117,15 +130,23 @@ Event Scanner::getEvent() {
 	 // some future timezone info here
 	 *********************************************************************/
 	
-    }
+	
+	    // END DATA CAPTURE ====================================================================================================
+	
+	
+	
+    }	// END EVENT DATA LOOP
     
-    return *newEvent;		// make sure to differentiate between this and calEvent
+}
+
+Scanner::~Scanner() {
+	// delete newEvent;
 }
 
 void Scanner::stringParse(string inString) {
-    size_t colon = inString.find(":");				// finds index of colon in string
-    size_t length = inString.length();				// finds length of whole string
-    tagString = inString.substr(0, colon);			// substring of 0->colon
+    size_t colon = inString.find(":");					// finds index of colon in string
+    size_t length = inString.length();					// finds length of whole string
+    tagString = inString.substr(0, colon);				// substring of 0->colon
     fieldString = inString.substr(colon + 1, length - colon - 1);	// substring from colon->end
     
 }

@@ -47,25 +47,16 @@ private:
     int numGuests;
     string UID;
     ofstream& fout;
-    int timeOffset;		// only hours for now. Perhaps add minutes later for int'l
+    string timeOffsetString;		// only hours for now. Perhaps add minutes later for int'l
+    int timeOffsetInt;			// int used for calculations, string used for printing
     string timezoneName;
     
     double eventDuration;
     
 public:
-    Event(ofstream& fout,
-	  string name,
-	  string descript,
-	  string locat,
+    Event(ofstream& outfile,
 	  string calName,
-	  bool isAllDay,
-	  int nGuests,
-	  string UIDs,
-	  string dateStartString,
-	  string dateEndString,
-	  string dateStampString,
-	  string dateCreatedString,
-	  string dateModifiedString);
+	string timeOffset);
     ~Event();
     string getYear(Date *date);
     string getMonth(Date *date);
@@ -82,7 +73,8 @@ public:
     bool isAllDay();
     string getUID();
     string getDescription();
-    int getTimeOffset();
+    int getTimeOffsetInt();
+    string getTimeOffsetString();
     string getTimezoneName();
     
     
@@ -112,7 +104,7 @@ public:
     void setAllDay(bool isAllDay);
     void setUID(string UIDs);
     void setDescription(string descript);
-    void setTimeOffset(string fieldString);
+    void setTimeOffsetInt(string fieldString);
     void setTimezoneName(string fieldString);
 
     double calculateDuration();
