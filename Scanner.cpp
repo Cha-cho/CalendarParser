@@ -28,17 +28,17 @@ Event Scanner::getEvent() {
     
     /*******************************
      Here is where you should copy calEvent fields into newEvent */
-    while (line < 116599) {
+    while (1) {
 	
 	fgets (inChar, 500, file);			// get entire line until '\n' char (includes whitespaces, which is the important part)
 	string inString(inChar);
 	stringParse(inString);
-	line++;
+	    //line++;
 	
 	if (tagString == "BEGIN") {
 		// could be the begining of Event, Calendar, or other (like timezone or alarm)
 		// probably will need own switch cases here
-	    if (fieldString == "VEVENT") {
+	    if (fieldString == "VEVENT\r\n") {
 		newEvent->setCalendarName(currentCalendar);
 		newEvent->setTimeOffset(timeOffset);
 	    }
@@ -49,12 +49,16 @@ Event Scanner::getEvent() {
 	    
 	    cout << fieldString << endl;
 	    
-	    if (fieldString == "VEVENT") {
+	    if (fieldString == "VEVENT\r\n") {
 		
 		cout << "<<<<<<<<<<END OF EVENT>>>>>>>>>>>>>>>" << endl;
 		    //calEnd = true;
-	    } else if (fieldString == "VCALENDAR") {
+	    } else if (fieldString == "VCALENDAR\r\n") {
 		cout << "END_CALENDAR" << endl;
+		 if (EOF) {
+		    cout << "EOF" << endl;
+		    break;
+		}
 	    }
 	   
 	    
@@ -122,7 +126,7 @@ void Scanner::stringParse(string inString) {
     size_t colon = inString.find(":");				// finds index of colon in string
     size_t length = inString.length();				// finds length of whole string
     tagString = inString.substr(0, colon);			// substring of 0->colon
-    fieldString = inString.substr(colon + 1, length - 1);	// substring from colon->end
+    fieldString = inString.substr(colon + 1, length - colon - 1);	// substring from colon->end
     
 }
 

@@ -51,7 +51,9 @@ Event::~Event() {
 }
 
 void Event::print() {
-    fout <<
+	// having issues with fout in this case
+    
+    cout <<
     calendarName << ',' <<
     eventName << ',' <<
     location << ',' <<
