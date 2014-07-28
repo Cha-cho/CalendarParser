@@ -34,9 +34,22 @@ Event::~Event() {
 }
 
 void Event::print() {
-	// FOUT NOT COOPERATING HERE
     
     fout <<
+    calendarName << ',' <<
+    eventName << ',' <<
+    location << ',' <<
+    description << ',' <<
+    dateStartStr << ',' <<
+    dateEndStr << ',' <<
+    dateCreatedStr << ',' <<
+    dateModifiedStr << ',' <<
+    dateStampStr << ',' <<
+    eventDuration <<
+    endl;
+    
+    
+    cout <<
     calendarName << ',' <<
     eventName << ',' <<
     location << ',' <<
@@ -73,23 +86,23 @@ Date Event::getDateModified() {
 }
 
 void Event::setDateStart(string dateString) {
-    
+    *dateStart = Date(dateString);
 }
 
 void Event::setDateEnd(string dateString) {
-    
+    *dateEnd = Date(dateString);
 }
 
 void Event::setDateStamp(string dateString) {
-    
+    *dateStamp = Date(dateString);
 }
 
 void Event::setDateCreated(string dateString) {
-    
+    *dateCreated = Date(dateString);
 }
 
 void Event::setDateModified(string dateString) {
-    
+    *dateModified = Date(dateString);
 }
 
 string Event::getYear(Date *date) {
@@ -151,9 +164,10 @@ int Event::getTimeOffsetInt() {
     return timeOffsetInt;
 }
 
+/*
 string Event::getTimezoneName() {
     return timezoneName;
-}
+}*/
 
 double Event::calculateDuration() {
 	// dateEnd - dateStart
@@ -205,11 +219,11 @@ void Event::setDayString(Date *date) {
 
 
 void Event::setLocation(string locat) {
-    
+    location = locat;
 }
 
 void Event::setEventName(string name) {
-    
+    eventName = name;
 }
 
 void Event::setCalendarName(string calName) {
@@ -217,15 +231,15 @@ void Event::setCalendarName(string calName) {
 }
 
 void Event::setAllDay(bool isAllDay) {
-    
+    allDay = isAllDay;
 }
 
 void Event::setUID(string UIDs) {
-    
+    UID = UIDs;
 }
 
 void Event::setDescription(string descript) {
-    
+    description = descript;
 }
 
 void Event::setTimeOffsetInt(const string fieldString) {
@@ -238,9 +252,10 @@ void Event::setTimeOffsetInt(const string fieldString) {
 	// not exactly the way I want this to work, but it will suffice for the time being
 }
 
+/*
 void Event::setTimezoneName(string fieldString) {
     timezoneName = fieldString;		// e.g. "MST"
-}
+}*/
 
 
 
