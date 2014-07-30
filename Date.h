@@ -31,12 +31,11 @@ private:
     string hour;
     string minute;
     string dayString;
-    
     string dateString;
     
     
 public:
-    Date(string dateString);		// parses out the formatted string
+    Date(string dateString, int timeOffset);		// parses out the formatted string
     ~Date();
     string getYear();
     string getMonth();
@@ -45,6 +44,7 @@ public:
     string getHour();
     string getMinute();
     string getDayString();
+    int timeOffset;
     
     void setYear(int year);
     void setMonth(int month);
@@ -54,7 +54,7 @@ public:
     void setMinute(int minute);
     void setDayString(string dayString);
     
-    void toSpreadsheetDate();
+    string toString();
     void toDateString();
     
 };

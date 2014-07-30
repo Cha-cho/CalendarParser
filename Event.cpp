@@ -86,31 +86,28 @@ Date Event::getDateModified() {
 }
 
 void Event::setDateStart(string dateString) {
-    
-    
-    dateStartStr = dateString;
-    dateStart = new Date(dateString);
+    dateStart = new Date(dateString, timeOffsetInt);
+    dateStartStr = dateStart->toString();
 }
 
 void Event::setDateEnd(string dateString) {
-    dateEndStr = dateString;
-    dateEnd = new Date(dateString);
-    eventDuration = calculateDuration();
+    dateEnd = new Date(dateString, timeOffsetInt);
+    dateEndStr = dateEnd->toString();
 }
 
 void Event::setDateStamp(string dateString) {
-    dateStampStr = dateString;
-    dateStamp = new Date(dateString);
+    dateStamp = new Date(dateString, timeOffsetInt);
+    dateStampStr = dateStamp->toString();
 }
 
 void Event::setDateCreated(string dateString) {
-    dateCreatedStr = dateString;
-    dateCreated = new Date(dateString);
+    dateCreated = new Date(dateString, timeOffsetInt);
+    dateCreatedStr = dateCreated->toString();
 }
 
 void Event::setDateModified(string dateString) {
-    dateModifiedStr = dateString;
-    dateModified = new Date(dateString);
+    dateModified = new Date(dateString, timeOffsetInt);
+    dateModifiedStr = dateModified->toString();
 }
 
 

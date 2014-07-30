@@ -19,7 +19,7 @@
 
 #include "Date.h"
 
-Date::Date(string dateString) {
+Date::Date(string dateString, int timeOffset) {
 	// parses out the formatted string into individual strings
 	// simply stores strings
 	// any sort of date calculations require 'stoi' to convert to int
@@ -33,6 +33,12 @@ Date::Date(string dateString) {
     day = dateString.substr(6,2);
     hour = dateString.substr(9,2);
     minute = dateString.substr(11,2);
+    
+    
+    
+    
+	// CALCULATE PROPER TIMEZONE TIME HERE WITH TIMEOFFSET
+    
     
     
 }
@@ -101,12 +107,14 @@ string Date::getMinute() {
  }
  */
 
-void Date::toSpreadsheetDate() {
+string Date::toString() {
 	// may need this to convert to friendly spreadsheet format
         // format of date string: 2013 11 17 T 00 45 00 Z
 	// 			  yyyy mm dd   hh mm ss
     
-    string output = year + month + day + 'T' + hour + minute + "00Z";
+    string output = year + "/" + month + "/" + day + "  " + hour + ":" + minute;
+    return output;
+
 }
 
 void Date::toDateString() {
