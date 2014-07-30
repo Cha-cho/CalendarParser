@@ -24,6 +24,7 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
     
     char inChar[1000];
     FILE* file = fopen("input.txt", "r");	// opens input file for fgets
+    bool inEvent = false;
     
     while (1) {
 	
@@ -40,7 +41,7 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
 		// could be the begining of Event, Calendar, or other (like timezone or alarm)
 		// probably will need own switch cases here
 	    if (fieldString == "VEVENT") {
-		
+		inEvent = true;
 		    // basically creates new event with each BEGIN:VEVENT
 		newEvent = new Event(fout, currentCalendar, timeOffset);
  
@@ -50,12 +51,10 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
 		// if statements for the word that follows
 		// grab same if statements as from BEGIN
 	    
-	    cout << fieldString << endl;
 	    
 	    if (fieldString == "VEVENT") {
 		newEvent->print();		// event data printed to CSV		
-		cout << "<<<<<<<<<<END OF EVENT>>>>>>>>>>>>>>>" << endl;
-		
+		inEvent = false;
 	    } else if (fieldString == "VCALENDAR") {
 		cout << "END_CALENDAR" << endl;
 		/*	Could just append special character at the end of the file in shell script with cat
@@ -67,14 +66,14 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
 	    }
 	} else if (tagString == "X-WR-CALNAME") {
 	    currentCalendar = fieldString;
-	} else if (tagString == "DTSTART;VALUE=DATE") {
+	/*} else if (tagString == "DTSTART;VALUE=DATE") {
 		// not sure what the difference between just regular DTSTART is
 		// maybe some sort of version thing
 	    newEvent->setDateStart(fieldString);
 	} else if (tagString == "DTEND;VALUE=DATE") {
 		// not sure what the difference between just regular DTSTART is
 		// maybe some sort of version thing
-	    newEvent->setDateEnd(fieldString);
+	    newEvent->setDateEnd(fieldString);*/
 	} else if (tagString == "DTSTAMP") {
 	    newEvent->setDateStamp(fieldString);
 	} else if (tagString == "CREATED") {
@@ -88,7 +87,9 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
 	} else if (tagString == "SUMMARY") {
 	    newEvent->setEventName(fieldString);
 	} else if (tagString == "DTSTART") {
-	    newEvent->setDateStart(fieldString);
+	    if (inEvent) {
+		newEvent->setDateStart(fieldString);
+	    }
 	} else if (tagString == "DTEND") {
 	    newEvent->setDateEnd(fieldString);
 	} else if (tagString == "TZOFFSETFROM") {
@@ -96,7 +97,6 @@ Scanner::Scanner(ifstream & infile, ofstream & outfile) : fin(infile), fout(outf
 		// will need to also parse out as a field in date
 	    timeOffset = fieldString;
 	} else if (tagString == "EOF") {
-	    cout << "The end of all things" << endl;
 	    break;
 	}
 	

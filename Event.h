@@ -28,17 +28,22 @@ using std::stoi;
 
 class Event {
 private:
+    
+	// date objects
     Date *dateStart;
     Date *dateEnd;
     Date *dateStamp;
     Date *dateCreated;
     Date *dateModified;
+    
+	// date strings
     string dateStartStr;
     string dateEndStr;
     string dateStampStr;
     string dateCreatedStr;
     string dateModifiedStr;
     
+	// other event properties
     string eventName;
     string description;
     string location;
@@ -51,22 +56,26 @@ private:
     int timeOffsetInt;			// int used for calculations, string used for printing
     string timezoneName;
     
+	// calculated properties
     double eventDuration;
     
 public:
     Event(ofstream& outfile,
 	  string calName,
-	string timeOffset);
+	  string timeOffset);
     ~Event();
-    string getYear(Date *date);
-    string getMonth(Date *date);
-    string getDay(Date *date);
     
-    /*
-    string getDayOfWeek(Date *date);
-    string getDayString(Date *date);
-    */
     
+	// UTILITIES ==================================================
+    
+    double calculateDuration();
+    void print();
+
+    
+    
+	// GET =========================================================
+    
+	// get Event properties
     string getLocation();
     string getEventName();
     string getCalendarName();
@@ -77,27 +86,29 @@ public:
     string getTimeOffsetString();
     string getTimezoneName();
     
+    /* string getDayOfWeek(Date *date);
+     string getDayString(Date *date);*/
     
+    
+	// get Date objects
     Date getDateStart();
     Date getDateEnd();
     Date getDateStamp();
     Date getDateCreated();
     Date getDateModified();
     
-    
+
+
+	// SET =========================================================
+	
+	// set Date objects and strings simultaneously
     void setDateStart(string dateString);
     void setDateEnd(string dateString);
     void setDateStamp(string dateString);
     void setDateCreated(string dateString);
     void setDateModified(string dateString);
-    
-    
-    
-    void setYear(Date *date);
-    void setMonth(Date *date);
-    void setDay(Date *date);
-    void setDayOfWeek(Date *date);
-    void setDayString(Date *date);
+   
+	// set Event properties
     void setLocation(string locat);
     void setEventName(string name);
     void setCalendarName(string calName);
@@ -106,9 +117,8 @@ public:
     void setDescription(string descript);
     void setTimeOffsetInt(string fieldString);
     void setTimezoneName(string fieldString);
-
-    double calculateDuration();
-    void print();
+    
+    
 };
 
 #endif /* defined(__CalendarParser__Event__) */

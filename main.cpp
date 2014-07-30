@@ -27,8 +27,22 @@ int main(int argc, const char * argv[])
     bool isEOF = false;
     
     fin.open("input.txt");		// use shell script 'cat' to combine all the ICS files into one text file
-    fout.open("output.txt");		// allows reading by MATLAB
+    fout.open("output.csv");		// allows reading by MATLAB
    
+    fout <<
+    "Calendar" << ',' <<
+    "Event" << ',' <<
+    "Location" << ',' <<
+    "Description" << ',' <<
+    "Start" << ',' <<
+    "End" << ',' <<
+    "Created" << ',' <<
+    "Modified" << ',' <<
+    "Date Stamp" << ',' <<
+    "Duration" <<
+    endl;
+    
+    
     while (!isEOF) {
 	Scanner scanner(fin, fout);	// runs through all events in the file
 	

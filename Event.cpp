@@ -86,54 +86,49 @@ Date Event::getDateModified() {
 }
 
 void Event::setDateStart(string dateString) {
-    *dateStart = Date(dateString);
+    
+    
+    dateStartStr = dateString;
+    dateStart = new Date(dateString);
 }
 
 void Event::setDateEnd(string dateString) {
-    *dateEnd = Date(dateString);
+    dateEndStr = dateString;
+    dateEnd = new Date(dateString);
+    eventDuration = calculateDuration();
 }
 
 void Event::setDateStamp(string dateString) {
-    *dateStamp = Date(dateString);
+    dateStampStr = dateString;
+    dateStamp = new Date(dateString);
 }
 
 void Event::setDateCreated(string dateString) {
-    *dateCreated = Date(dateString);
+    dateCreatedStr = dateString;
+    dateCreated = new Date(dateString);
 }
 
 void Event::setDateModified(string dateString) {
-    *dateModified = Date(dateString);
+    dateModifiedStr = dateString;
+    dateModified = new Date(dateString);
 }
 
-string Event::getYear(Date *date) {
-    return date->getYear();
-}
-
-string Event::getMonth(Date *date) {
-    return date->getMonth();
-
-}
-
-string Event::getDay(Date *date) {
-    return date->getDay();
-
-}
 
 /*
-string Event::getDayOfWeek(Date *date) {
-    return date->getDayOfWeek();
-
-}
-
-string Event::getDayString(Date *date) {
-    return date->getDayString();
-
-}
-*/
+ string Event::getDayOfWeek(Date *date) {
+ return date->getDayOfWeek();
+ 
+ }
+ 
+ string Event::getDayString(Date *date) {
+ return date->getDayString();
+ 
+ }
+ */
 
 string Event::getLocation() {
     return location;
-
+    
 }
 
 string Event::getEventName() {
@@ -165,9 +160,9 @@ int Event::getTimeOffsetInt() {
 }
 
 /*
-string Event::getTimezoneName() {
-    return timezoneName;
-}*/
+ string Event::getTimezoneName() {
+ return timezoneName;
+ }*/
 
 double Event::calculateDuration() {
 	// dateEnd - dateStart
@@ -181,7 +176,7 @@ double Event::calculateDuration() {
     int numDay = stoi(dateEnd->getDay()) - stoi(dateStart->getDay());
     int numHour = stoi(dateEnd->getHour()) - stoi(dateStart->getHour());
     int numMinute = stoi(dateEnd->getMinute()) - stoi(dateStart->getMinute());
-
+    
 	// enter cases where day may be negative (1st of month - 31st of month)
     if (numDay < 0) {
 	numDay = 1;
@@ -194,29 +189,6 @@ double Event::calculateDuration() {
     hours = numYear*365.25*24 + numDay*24 + numHour + numMinute/60;
     return hours;
 }
-
-void Event::setYear(Date *date) {
-    
-}
-
-void Event::setMonth(Date *date) {
-    
-}
-
-void Event::setDay(Date *date) {
-    
-}
-
-/*
-void Event::setDayOfWeek(Date *date) {
-    
-}
-
-void Event::setDayString(Date *date) {
-    
-}
-*/
-
 
 void Event::setLocation(string locat) {
     location = locat;
@@ -248,14 +220,14 @@ void Event::setTimeOffsetInt(const string fieldString) {
     	// 		 ±hhmm
     
     timeOffsetInt = stoi(fieldString) / 100;		// make sure this is working properly
-			
+    
 	// not exactly the way I want this to work, but it will suffice for the time being
 }
 
 /*
-void Event::setTimezoneName(string fieldString) {
-    timezoneName = fieldString;		// e.g. "MST"
-}*/
+ void Event::setTimezoneName(string fieldString) {
+ timezoneName = fieldString;		// e.g. "MST"
+ }*/
 
 
 
